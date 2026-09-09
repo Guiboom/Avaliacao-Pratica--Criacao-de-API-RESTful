@@ -12,7 +12,7 @@ if($request === 'GET') {
 
     if(isset($_GET['idPessoa'])) {
         $id = $_GET['idPessoa'];
-        $buscaPessoa = $pessoa->listarPesosa($id);
+        $buscaPessoa = $pessoa->listarPessoa($id);
         if($buscaPessoa) {
             http_response_code(200);
             echo json_encode($buscaPessoa);
@@ -26,9 +26,11 @@ if($request === 'GET') {
 } else if($request === 'POST') {
     $dadosRecebidos = json_decode(file_get_contents("php://input"), true);
     $nome = $dadosRecebidos['nome'];
-    $inserir = $pessoa->cadastrarPessoa($nome);
+    $telefone = $dadosRecebidos['telefone'];
+    $email = $dadosRecebidos['email'];
+    $inserir = $pessoa->cadastrarPessoa($nome,$telefone,$email);
     if($inserir) {
-        http_response_code(200);
+        http_response_code(201);
         echo json_encode(["mensagem"=>"Pessoa cadastrada"]);
     }
 } else if($request === "DELETE") {

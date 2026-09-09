@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const URL_API = "http://localhost:8080/api_v1/pessoas_completo/controllers/pessoaController.php";
+    const URL_API = "http://localhost:8080/Avaliacao-Pratica--Criacao-de-API-RESTful/lanhouse/controllers/pessoaController.php";
     
     const btnListar    = document.getElementById("listarPessoas");
     const lista        = document.querySelector(".lista");
@@ -26,13 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     lista.appendChild(item)
                 })
             } else if(form.className == "cadastrar") {
-                const nome = document.querySelector('form.cadastrar input[type="text"]').value
+                const input = document.querySelector('.cadastrar input[type="text"]');
+                const nome = inputs[0].value;
+                const telefone = inputs[1].value;
+                const email = inputs[2].value;
+
                 fetch(URL_API, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({nome:nome})
+                    body: JSON.stringify({
+                        nome:nome,
+                        telefone:telefone,
+                        email:email
+                    })
                 })
                 .then(resposta => {
                     console.log('Status HTTP:', resposta.status);
@@ -68,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dados.forEach(pessoa => {
                 const item = document.createElement("li");
             
-                item.textContent = `${pessoa.id} - ${pessoa.nome} `;
+                item.textContent = `${pessoa.id} - ${pessoa.nome} - ${pessoa.telefone} - ${pessoa.email} `;
                 
                 const btnAlterar = document.createElement("button");
                 btnAlterar.textContent = "Alterar";
@@ -92,7 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             body: JSON.stringify({
                 id: pessoa.id,
-                nome: novoNome
+                nome: novoNome,
+                telefone: telefone,
+                email: email
             })
         })
         .then(response => {

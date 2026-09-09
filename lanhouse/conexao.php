@@ -1,5 +1,5 @@
 <?php
-$conexao = mysqli_connect("localhost", "root", "", "apiPessoas");
+$conexao = mysqli_connect("localhost", "root", "", "apiLanHouse");
 
 if (mysqli_connect_errno()) {
     header('Content-Type: application/json');

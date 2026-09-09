@@ -16,16 +16,16 @@
             return $dados;
         }
 
-        public function listarPesosa($id) {
+        public function listarPessoa($id) {
             global $conexao;
             $sql = "SELECT * FROM pessoa WHERE id = $id";
             $resultado = $conexao->query($sql);
             return $resultado->fetch_assoc();
         }
 
-        public function cadastrarPessoa($nome) {
+        public function cadastrarPessoa($nome,$telefone,$email) {
             global $conexao;
-            $sql = "INSERT INTO pessoa(nome) VALUES ('$nome')";
+            $sql = "INSERT INTO pessoa(nome, telefone, email) VALUES ('$nome', '$telefone', '$email')";
             return $conexao->query($sql);
         }
 
@@ -38,7 +38,7 @@
 
         public function alterar($dados) {
             global $conexao;
-            $sql = "UPDATE pessoa SET nome = '" .$dados['nome']. "' WHERE id = " .$dados['id'];
+            $sql = "UPDATE pessoa SET nome = '" .$dados['nome']. "', telefone = '" .$dados['telefone']. "', email = '" .$dados['email']. "' WHERE id = " .$dados['id'];
             return $conexao->query($sql);
         }
 
