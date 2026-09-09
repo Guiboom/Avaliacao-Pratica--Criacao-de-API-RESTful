@@ -3,7 +3,7 @@
 
     class Computador {
 
-        public function listarComputadoress() {
+        public function listarComputadores() {
             global $conexao;
             $sql = "SELECT * FROM computador";
             $resultado = $conexao->query($sql);
@@ -23,9 +23,9 @@
             return $resultado->fetch_assoc();
         }
 
-        public function cadastrarComputador($nome,$telefone,$email) {
+        public function cadastrarComputador($nome,$numero,$status,$pessoa_id) {
             global $conexao;
-            $sql = "INSERT INTO computador(nome, telefone, email) VALUES ('$nome', '$telefone', '$email')";
+            $sql = "INSERT INTO computador(nome, numero, status, pessoa_id) VALUES ('$nome', '$numero', '$status', '$pessoa_id' )";
             return $conexao->query($sql);
         }
 
@@ -38,7 +38,7 @@
 
         public function alterar($dados) {
             global $conexao;
-            $sql = "UPDATE computador SET nome = '" .$dados['nome']. "', telefone = '" .$dados['telefone']. "', email = '" .$dados['email']. "' WHERE id = " .$dados['id'];
+            $sql = "UPDATE computador SET nome = '" .$dados['nome']. "', numero = '" .$dados['numero']. "', status = '" .$dados['status']. "' WHERE id = " .$dados['id']. "', pessoa_id = '" .$dados['pessoa_id']. "' WHERE id = " .$dados['id'];
             return $conexao->query($sql);
         }
 

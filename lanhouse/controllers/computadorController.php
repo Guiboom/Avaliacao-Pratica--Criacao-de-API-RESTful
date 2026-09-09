@@ -20,15 +20,16 @@ if($request === 'GET') {
         exit;
     }
 
-    $lista = $computador->listarComputadoress();
+    $lista = $computador->listarComputadores();
     echo json_encode($lista);
 
 } else if($request === 'POST') {
     $dadosRecebidos = json_decode(file_get_contents("php://input"), true);
     $nome = $dadosRecebidos['nome'];
-    $telefone = $dadosRecebidos['telefone'];
-    $email = $dadosRecebidos['email'];
-    $inserir = $computador->cadastrarComputador($nome,$telefone,$email);
+    $numero = $dadosRecebidos['numero'];
+    $status = $dadosRecebidos['status'];
+    $pessoa_id = $dadosRecebidos['pessoa_id'];
+    $inserir = $computador->cadastrarComputador($nome,$numero,$status,$pessoa_id);
     if($inserir) {
         http_response_code(201);
         echo json_encode(["mensagem"=>"Computador cadastrada"]);
