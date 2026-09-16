@@ -6,4 +6,4 @@ if (mysqli_connect_errno()) {
     http_response_code(500);
     echo json_encode(["erro" => "Falha ao conectar ao MySQL: " . mysqli_connect_error()]);
     exit();
-} 
+}

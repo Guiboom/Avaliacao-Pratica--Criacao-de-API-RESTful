@@ -3,6 +3,9 @@
 
     class Computador {
 
+        private $conexao;
+
+
         public function listarComputadores() {
             global $conexao;
             $sql = "SELECT * FROM computador";
@@ -19,7 +22,12 @@
         public function listarComputador($id) {
             global $conexao;
             $sql = "SELECT * FROM computador WHERE id = $id";
+
             $resultado = $conexao->query($sql);
+            
+            $pessoa = $this->conexao->query("SELECT * FROM pessoa WHERE id=$id");
+
+            $computador['pessoa_id'] = $pessoa->fetchAll();
             return $resultado->fetch_assoc();
         }
 
@@ -37,6 +45,7 @@
             global $conexao;
             $sql = "DELETE FROM computador WHERE id = $id";
             return $conexao->query($sql);
+            
         }
 
         public function alterar($dados) {

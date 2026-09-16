@@ -45,5 +45,6 @@
             $sql = "UPDATE pessoa SET nome = '" .$dados['nome']. "', telefone = '" .$dados['telefone']. "', email = '" .$dados['email']. "' WHERE id = " .$dados['id'];
             return $conexao->query($sql);
         }
+
     }
 ?>
