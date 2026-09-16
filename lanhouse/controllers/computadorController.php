@@ -112,8 +112,8 @@ if($request === 'GET') {
                 echo json_encode([
                     "mensagem" => "Computador Alterado"
                 ]);
-            } /* else {
-                $pessoa = $Pessoa->listarPessoa($pessoa_id);
+            } else {
+                $Pessoa = $pessoa->listarPessoa($pessoa_id);
                 if($pessoa) {
                     $alterar = $computador->alterar($dadosRecebidos);
                     http_response_code(200);
@@ -126,17 +126,17 @@ if($request === 'GET') {
                         "mensagem" => "Pessoa não encontrada"
                     ]);
                 }
-            } */
+            }
         } else {
             http_response_code(404);
             echo json_encode([
-                "mensagem" => "Computador não encontrado"
+                "mensagem" => "Computador não encontrado1"
             ]);
         }
     } else {
         http_response_code(404);
         echo json_encode([
-            "mensagem" => "Computador não encontrado"
+            "mensagem" => "Computador não encontrado2"
         ]);
     }
 }

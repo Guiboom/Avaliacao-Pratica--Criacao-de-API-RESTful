@@ -19,16 +19,26 @@
             return $dados;
         }
 
-        public function listarComputador($id) {
+        public function listarComputador($id) {//ta guloso o erro kkkk
             global $conexao;
             $sql = "SELECT * FROM computador WHERE id = $id";
 
-            $resultado = $conexao->query($sql);
+
             
-            $pessoa = $this->conexao->query("SELECT * FROM pessoa WHERE id=$id");
+            $pessoa = $conexao->query("SELECT * FROM pessoa WHERE id=$id");
 
             $computador['pessoa_id'] = $pessoa->fetchAll();
+            $resultado = $conexao->query($sql);
             return $resultado->fetch_assoc();
+/*         $sqlComputador = $this->conexao->query("SELECT * FROM computador WHERE id=$id");
+        $computador = $sqlComputador->fetch();
+
+        $pessoa = $this->conexao->query("SELECT * FROM pessoa WHERE id=$id");
+
+        $computador['id_pessoa'] = $pessoa->fetch(PDO::FETCH_ASSOC);
+        $result = $computador;
+
+        return $result; */
         }
 
         public function cadastrarComputador($nome,$numero,$status,$pessoa_id) {
